@@ -2,6 +2,7 @@ package jcolonia.daw2020.mayo;
 
 import java.util.Scanner;
 
+
 /**
  * Gestión de números «decimales»: recogida y visualización de la suma
  * 
@@ -48,24 +49,56 @@ public class ControlSumatorio {
 			case 0: // Salir
 				menúPrincipal.mostrarMensaje("¡¡¡A-D-I-O-S!!");
 				break;
-//			case 1: // Opción 1: Entrada datos
-//				cargarSumando();
-//				break;
-//			case 2: // Opción 2: Mostrar sumandos
-//				mostrarSumandos();
-//				break;
-//			case 3: // Opción 3: Mostrar suma
-//				mostrarSuma();
-//				break;
-//			case 4: // Opción 4: Reset
-//				restablecer();
-//				break;
+			case 1: // Opción 1: Entrada datos
+				cargarSumando();
+				break;
+			case 2: // Opción 2: Mostrar sumandos
+				mostrarSumandos();
+				break;
+			case 3: // Opción 3: Mostrar suma
+				mostrarSuma();
+				break;
+			case 4: // Opción 4: Reset
+				restablecer();
+				break;
 			default: // Opción no esperada: abortar
 				ejecutarGenérico(entrada);
 				System.err.println("Error interno de programa - operación pendiente de desarrollo");
 				System.exit(1);
 			}
 		} while (entrada != 0);
+	}
+	private void cargarSumando() {
+		VistaAgregar vista;
+		
+		vista = new VistaAgregar(in);
+		try {
+			vista.agregarSumando(conjunto);
+		} catch (SumatorioNumberException e) {
+			e.printStackTrace();
+		}
+		System.out.println(conjunto.getNúmSumandos());
+	}
+
+	private void mostrarSumandos() {
+		VistaMostrar vista;
+		
+		vista = new VistaMostrar(conjunto);
+		vista.mostrarLista(conjunto.toListaString());
+		
+	}
+
+	private void mostrarSuma() {
+		VistaMostrar vista;
+		
+		vista = new VistaMostrar(conjunto);
+		vista.mostrarSuma(conjunto.toString());
+		
+	}
+
+	private void restablecer() {
+		// TODO Esbozo de método generado automáticamente
+		
 	}
 
 	private void ejecutarGenérico(int id) {
